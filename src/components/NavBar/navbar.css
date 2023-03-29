@@ -1,0 +1,9 @@
+nav {
+  background: #def0ff;
+  opacity: 0.6;
+}
+
+nav ul li:hover {
+  background: #97ceff;
+  border-radius: 10px;
+}
