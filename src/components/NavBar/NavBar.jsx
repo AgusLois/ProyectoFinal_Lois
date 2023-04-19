@@ -1,55 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.css";
 import { CartWidget } from "../CartWidget/CartWidget";
+import {
+  Container,
+  Nav,
+  Navbar,
+  Badge,
+  Button,
+  Offcanvas,
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div>
-      <nav className="navbar navbar-expand-lg">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+      <Navbar collapseOnSelect className="nav">
+        <Container className="justify-content-center">
+          <Link className="navStyle" to="/">
             Pixel
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div
-            className="collapse navbar-collapse justify-content-center"
-            id="navbarNav"
-          >
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link active" href="#">
-                  Item 1
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active" href="#">
-                  Item 2
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active" href="#">
-                  Item 3
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active" href="#">
-                  <CartWidget />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+          </Link>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <Link className="navStyle" to="/productos/clothes">
+                Ropa
+              </Link>
+              <Link className="navStyle" to="/productos/shoes">
+                Zapatos
+              </Link>
+              <Link className="navStyle" to="/productos/shoes">
+                Accesorios
+              </Link>
+            </Nav>
+            <Nav>
+              <Button onClick={handleShow}>
+                <CartWidget /> <Badge bg="danger">3</Badge>
+              </Button>
+              <Offcanvas placement="end" show={show} onHide={handleClose}>
+                <Offcanvas.Header closeButton>
+                  <Offcanvas.Title>Mi Carrito</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                  Aca va a ir una vista previa del carrito proximamente
+                </Offcanvas.Body>
+              </Offcanvas>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </div>
   );
 };
