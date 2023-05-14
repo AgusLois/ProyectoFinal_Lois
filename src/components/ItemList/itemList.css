@@ -2,3 +2,7 @@ img{
   height: 320px;
 }
 
+.container{
+  align-items: center;
+  margin-top: 30px;
+}

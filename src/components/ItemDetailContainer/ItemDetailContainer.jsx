@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getStock } from "../helpers/getStock";
 import Spinner from "react-bootstrap/Spinner";
 import { ItemDetail } from "../ItemDetail/ItemDetail";
 import { useParams } from 'react-router-dom'
+import { getFirestore } from "../../firebase/config";
 
 export const ItemDetailContainer = () => {
   const [item, setItem] = useState(null);
@@ -11,15 +11,24 @@ export const ItemDetailContainer = () => {
   const {itemId} = useParams()
 
   useEffect(() => {
-    setLoading(true);
-    getStock()
-      .then((res) => {
-        setItem( res.find( prod => prod.id === Number(itemId)))
-      })
-      .catch((error) => console.log(error))
-      .finally(() => {
-        setLoading(false);
-      });
+    setLoading(true)
+    const db = getFirestore();
+    const productos = db.collection('productos')
+
+    const item = productos.doc(itemId)
+
+    item.get()
+        .then((doc)=> {
+          setItem({
+            id: doc.id, ...doc.data()
+          })
+        })
+        .catch((err) => console.log(err))
+        .finally(() =>{
+          setLoading(false)
+        })
+
+
   }, [itemId]);
 
   return (

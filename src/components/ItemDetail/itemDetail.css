@@ -1,0 +1,17 @@
+.container {
+  padding: 10px;
+}
+
+.imgDetail {
+  width: 650px;
+  height: 600px;
+}
+
+.infoDetail {
+  margin-left: 50px;
+  padding: 15px;
+}
+
+.description {
+  color: #868e96;
+}

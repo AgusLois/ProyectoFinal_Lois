@@ -1,18 +1,27 @@
-.navStyle{
+.container {
+  margin-top: 0;
+}
+
+.navStyle {
   text-decoration: none;
   margin: 10px;
   color: #000;
 }
 
 .nav {
-  background: #FFC4F3;
+  background: #ffedfb;
+  text-align: center;
 }
 
 .navStyle:hover {
-  background: #F7BFEC;
-  border-radius: 5px;
+  color: #c4c4c4;
 }
 
-.spinner{
-  color: #DC8DCC;
+.spinner {
+  color: #dc8dcc;
+}
+
+.linkStyle{
+  text-decoration: none;
+  color: white;
 }
